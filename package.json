@@ -1,0 +1,14 @@
+{
+    "name": "simply-xp-test",
+    "version": "1.0.0",
+    "description": "Simply-XP Testing",
+    "main": "index.js",
+    "dependencies": {
+        "discord.js": "^13.*.*",
+        "dotenv": "^16.*.*",
+        "simply-xp": "^1.1.8",
+        "wokcommands": "~1.5.3"
+    },
+    "author": "Abadima",
+    "license": "MIT"
+}
