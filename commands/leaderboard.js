@@ -7,7 +7,7 @@ module.exports = {
     slash: true,
     testOnly: false,
     guildOnly: true,
-    cooldown: "8s",
+    cooldown: "5s",
     minArgs: 0,
     maxArgs: 1,
     expectedArgs: "<Limit>",

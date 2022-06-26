@@ -7,7 +7,7 @@ module.exports = {
     slash: true,
     testOnly: false,
     guildOnly: true,
-    cooldown: "15s",
+    cooldown: "5s",
 
     minArgs: 1,
     maxArgs: 2,
@@ -31,7 +31,7 @@ module.exports = {
         await interaction.deferReply()
 
         if (args[1]) {
-            xp.setXP(interaction, args[1], guild.id, args[0]).then((res) => {
+            xp.setXP(args[1], guild.id, args[0]).then((res) => {
                 interaction.editReply({
                     embeds: [{
                         title: "Result of Function",
@@ -49,7 +49,7 @@ module.exports = {
                 })
             })
         } else {
-            xp.setXP(interaction, user.id, guild.id, args[0]).then((res) => {
+            xp.setXP(user.id, guild.id, args[0]).then((res) => {
                 interaction.editReply({
                     embeds: [{
                         title: "Result of Function",

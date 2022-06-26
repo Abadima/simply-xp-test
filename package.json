@@ -1,12 +1,12 @@
 {
     "name": "simply-xp-test",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Simply-XP Testing",
     "main": "index.js",
     "dependencies": {
         "discord.js": "^13.*.*",
         "dotenv": "^16.*.*",
-        "simply-xp": "^1.1.8",
+        "simply-xp": "^1.2.0",
         "wokcommands": "~1.5.3"
     },
     "author": "Abadima",
