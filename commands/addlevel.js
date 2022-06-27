@@ -7,7 +7,7 @@ module.exports = {
     slash: true,
     testOnly: false,
     guildOnly: true,
-    cooldown: "5s",
+   // cooldown: "5s",
 
     minArgs: 1,
     maxArgs: 2,
@@ -43,7 +43,7 @@ module.exports = {
                 interaction.editReply({
                     embeds: [{
                         title: "Result of Function",
-                        description: err.toString().substring(1, 1024),
+                        description: err.toString().substring(0, 1024),
                         color: "RED"
                     }]
                 })
@@ -61,7 +61,7 @@ module.exports = {
                 interaction.editReply({
                     embeds: [{
                         title: "Result of Function",
-                        description: err.toString().substring(1, 1024),
+                        description: err.toString().substring(0, 1024),
                         color: "RED"
                     }]
                 })

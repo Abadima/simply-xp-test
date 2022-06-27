@@ -1,16 +1,13 @@
 require("dotenv").config();
-require("simply-xp").connect(process.env.DB, { notify: false });
+require("simply-xp").connect(process.env.DB, { notify: false }); // you'll need to set this to your own MongoDB URI
 const { Client, Intents } = require("discord.js");
 const Wok = require("wokcommands");
 const path = require("path");
 
 const client = new Client({
-	partials: ["CHANNEL", "MESSAGE"],
 	intents: [
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_MEMBERS,
-		Intents.FLAGS.GUILD_MESSAGES
-	],
+		Intents.FLAGS.GUILDS
+	], 
 	presence: {
 		status: "online",
 		activities: [{
@@ -39,10 +36,6 @@ client.on("ready", async () => {
 			keepAlive: true,
 		},
 
-		testServers: ["950190034852646912"],
-
-		botOwners: [`326815959358898189`, `875010010583826443`],
-
 		disabledDefaultCommands: [
 			"help",
 			"prefix",
@@ -57,4 +50,4 @@ client.on("ready", async () => {
 	wok.on("databaseConnected", async (connection, state) => {
 		console.log("WOKCommands > Database", state)
 	})
-}); client.login(process.env.TOKEN)
+}); client.login(process.env.TOKEN) // you'll need to set this to your own Discord Bot Token

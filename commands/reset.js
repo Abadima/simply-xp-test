@@ -36,7 +36,7 @@ module.exports = {
             interaction.editReply({
                 embeds: [{
                     title: "Result of Function",
-                    description: err.toString(),
+                    description: err.toString().substring(0, 1024),
                     color: "RED"
                 }]
             })

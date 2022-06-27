@@ -32,24 +32,28 @@ module.exports = {
             type: 3,
             choices: [
                 {
-                    name: "Line Graph",
-                    value: "line"
-                },
-                {
                     name: "Bar Chart",
                     value: "bar"
                 },
                 {
-                    name: "Radar Chart",
-                    value: "radar"
+                    name: "Doughnut Graph",
+                    value: "doughnut"
                 },
                 {
-                    name: "Circle Graph",
-                    value: "doughnut"
+                    name: "Line Graph",
+                    value: "line"
+                },
+                {
+                    name: "Pie Chart",
+                    value: "pie"
                 },
                 {
                     name: "Polar Area Chart",
                     value: "polarArea"
+                },
+                {
+                    name: "Radar Chart",
+                    value: "radar"
                 }
             ]
         }
@@ -74,7 +78,7 @@ module.exports = {
             interaction.editReply({
                 embeds: [{
                     title: "Result of Function",
-                    description: err.toString().substring(1, 1024),
+                    description: err.toString().substring(0, 1024),
                     color: "RED"
                 }]
             })
