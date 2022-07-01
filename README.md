@@ -21,9 +21,9 @@ If you want to use our service, please do run `install simply-xp` on node.js & v
 ## Installation Guide
 
 ### Step 1:
+#### PNPM: ```pnpm add```
 #### NPM: ```npm install```
-#### PNPM: ```pnpm install```
-#### YARN: ```yarn install```
+#### YARN: ```yarn add```
 ### Step 2
 
 Input values in `example.env` and rename to `.env`

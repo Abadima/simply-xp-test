@@ -7,7 +7,7 @@ const path = require("path");
 const client = new Client({
 	intents: [
 		Intents.FLAGS.GUILDS
-	], 
+	],
 	presence: {
 		status: "online",
 		activities: [{
@@ -50,4 +50,6 @@ client.on("ready", async () => {
 	wok.on("databaseConnected", async (connection, state) => {
 		console.log("WOKCommands > Database", state)
 	})
-}); client.login(process.env.TOKEN) // you'll need to set this to your own Discord Bot Token
+}); client.on('levelUp', async (message, data, role) => { console.log(data) }) // <= This is optional but can be used to send a message to the user when they level up.
+
+client.login(process.env.TOKEN) // you'll need to set this to your own Discord Bot Token

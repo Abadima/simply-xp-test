@@ -63,9 +63,9 @@ module.exports = {
         await interaction.deferReply()
 
         xp.charts(interaction, {
-            position: interaction.options.getNumber("position") || 5,
+            position: interaction.options.getNumber("position") || null,
             background: interaction.options.getString("background") || null,
-            type: interaction.options.getString("type") || "bar"
+            type: interaction.options.getString("type") || null
         }).then((res) => {
             interaction.editReply({
                 embeds: [{
