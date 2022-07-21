@@ -1,3 +1,4 @@
+const { Colors } = require("discord.js")
 const xp = require("simply-xp");
 
 module.exports = {
@@ -30,7 +31,7 @@ module.exports = {
                     embeds: [{
                         title: "Result of Function",
                         description: JSON.stringify(res) || "Nothing Returned (Likely User Already Exists)",
-                        color: res ? "GREEN" : "ORANGE"
+                        color: res ? Colors.DarkGreen : Colors.DarkOrange
                     }]
                 })
             }).catch((err) => {
@@ -48,7 +49,7 @@ module.exports = {
                     embeds: [{
                         title: "Result of Function",
                         description: JSON.stringify(res) || "Nothing Returned (Likely User Already Exists)",
-                        color: res ? "GREEN" : "ORANGE"
+                        color: res ? Colors.DarkGreen : Colors.DarkOrange
                     }]
                 })
             }).catch((err) => {

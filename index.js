@@ -1,21 +1,20 @@
 require("dotenv").config();
 require("simply-xp").connect(process.env.DB, { notify: false }); // you'll need to set this to your own MongoDB URI
-const { Client, Intents } = require("discord.js");
+const { ActivityType, Client, GatewayIntentBits } = require('discord.js');
 const Wok = require("wokcommands");
 const path = require("path");
 
 const client = new Client({
 	intents: [
-		Intents.FLAGS.GUILDS
-	],
-	presence: {
+		GatewayIntentBits.Guilds
+	], presence: {
 		status: "online",
 		activities: [{
-			name: require(path.join(__dirname, "package.json")).version,
-			type: "WATCHING"
+			name: require("./package.json").version,
+			type: ActivityType.Watching
 		}]
 	}
-})
+}); 
 
 client.on("ready", async () => {
 	const wok = new Wok(client, {

@@ -1,16 +1,16 @@
-<h2 style="font-size:2.5rem;" align="center">Simply-XP Test System</h2>
-<h2 align="center">Prebuilt Discord Bot using Node.js & WokCommands
+<h2 style="font-size:2.5rem;" align="center">Simply-XP Test System (D.JS V14)</h2>
+<h2 align="center">Prebuilt Discord Bot using Node.js & Discord.js v14
 <br><br> Made by Abadima#6356 <br></h2>
 
 <div align="center">
   <a href="https://nodejs.org/en/download/">
-    <img src="https://img.shields.io/badge/Node.js-%2016.15.1-green.svg?style=for-the-badge&logo=Node.js" alt="Full-Package">
+    <img src="https://img.shields.io/badge/Node.js-%2016.16-green.svg?style=for-the-badge&logo=Node.js" alt="Full-Package">
   </a>
   <a href="https://discord.gg/3JzDV9T5Fn">
     <img src="https://img.shields.io/discord/867999056172052551.svg?label=Support&logo=Discord&colorB=7289da&style=for-the-badge" alt="Support Server">
   </a>
   <a href="https://github.com/abadima/simply-xp-test">
-    <img src="https://img.shields.io/github/workflow/status/Abadima/simply-xp-test/Build/main?style=for-the-badge" alt="Code Status">
+    <img src="https://img.shields.io/github/workflow/status/Abadima/simply-xp-test/Build/djs-v14?style=for-the-badge" alt="Code Status">
   </a>
 </div>
 

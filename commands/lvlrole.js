@@ -1,3 +1,4 @@
+const { Colors } = require("discord.js")
 const xp = require("simply-xp");
 
 module.exports = {
@@ -30,7 +31,7 @@ module.exports = {
                     embeds: [{
                         title: "Result of Function",
                         description: "simply-xp does not provide an output for this function!",
-                        color: "GREEN"
+                        color: Colors.DarkGreen
                     }]
                 })
             }).catch((err) => {
@@ -48,7 +49,7 @@ module.exports = {
                     embeds: [{
                         title: "simply-xp does not provide an output for this function!",
                         description: JSON.stringify(res),
-                        color: "GREEN"
+                        color: Colors.DarkGreen
                     }]
                 })
             }).catch((err) => {

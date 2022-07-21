@@ -1,3 +1,4 @@
+const { Colors } = require("discord.js")
 const xp = require("simply-xp");
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
                 embeds: [{
                     title: "Result of Function",
                     description: lead,
-                    color: lead.length ? "GREEN" : "ORANGE",
+                    color: lead.length ? Colors.DarkGreen : Colors.DarkOrange,
                     fields: [{
                         name: "Example Result (Per User)",
                         value: `{
