@@ -1,14 +1,13 @@
 {
     "name": "simply-xp-test",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Simply-XP Testing",
     "main": "index.js",
     "dependencies": {
-        "@napi-rs/canvas": "^0.1.25",
-        "discord.js": "^14.0.3",
+        "discord.js": "^14.2.0",
         "dotenv": "latest",
         "simply-xp": "latest",
-        "wokcommands": "1.5.3-dev"
+        "wokcommands": "latest"
     },
     "engines": {
         "node": "16.x",

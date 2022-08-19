@@ -51,7 +51,7 @@ module.exports = {
                 embeds: [{
                     title: "Result of Function",
                     description: `${err}`,
-                    color: "RED"
+                    color: Colors.Red
                 }]
             })
         })

@@ -39,7 +39,7 @@ module.exports = {
                     embeds: [{
                         title: "Result of Function",
                         description: err.toString().substring(0, 1024),
-                        color: "RED"
+                        color: Colors.Red
                     }]
                 })
             })
@@ -57,7 +57,7 @@ module.exports = {
                     embeds: [{
                         title: "Result of Function",
                         description: err.toString().substring(0, 1024),
-                        color: "RED"
+                        color: Colors.Red
                     }]
                 })
             })
