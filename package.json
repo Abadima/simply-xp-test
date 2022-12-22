@@ -1,17 +1,17 @@
 {
     "name": "simply-xp-test",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Simply-XP Testing",
     "main": "index.js",
     "dependencies": {
-        "discord.js": "^14.2.0",
-        "dotenv": "latest",
-        "simply-xp": "latest",
-        "wokcommands": "latest"
+        "discord.js": "^14.7.1",
+        "dotenv": "^16.0.3",
+        "simply-xp": "beta",
+        "wokcommands": "^2.1.0"
     },
     "engines": {
-        "node": "16.x",
-        "npm": "8.x"
+        "node": ">=16.x",
+        "npm": ">=8.x"
     },
     "author": "Abadima",
     "license": "MIT"
