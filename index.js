@@ -1,10 +1,22 @@
-require("dotenv").config();
-require("simply-xp").connect(process.env.DB, { notify: false }); // you'll need to set this to your own MongoDB URI
+const { Logena } = require("logena")
+require("dotenv").config({ quiet: true });
+require("simply-xp").connect(process.env.DB, { notify: false });
 const { ActivityType, Client, GatewayIntentBits } = require('discord.js');
-const Wok = require("wokcommands");
-const path = require("path");
+const { loadSlashCommands } = require("./handlers/registerCommands");
+const { loadEvents } = require("./handlers/loadEvents");
 
-const client = new Client({
+Logena.set({
+	debug: true,
+	appName: "S-XP T-BOT",
+	colors: {
+		appName: "magenta",
+		debug: "green",
+		info: "blue"
+	},
+	useTimestamps: true
+});
+
+let client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds
 	], presence: {
@@ -14,45 +26,12 @@ const client = new Client({
 			type: ActivityType.Watching
 		}]
 	}
-}); 
+});
 
-client.on("ready", async () => {
-	console.log(`BOT ACTIVE: ${client.user.tag}`);
-
-	new Wok({
-
-		client,
-
-		commandsDir: path.join(__dirname, "commands"),
-
-		cooldownConfig: {
-			errorMessage: "Please wait {TIME} before doing that again.",
-			botOwnersBypass: true,
-			dbRequired: 60,
-		},
-
-		delErrMsgCooldown: 5,
-
-		defaultLangauge: "english",
-
-		dbOptions: {
-			useUnifiedTopology: true,
-			useNewUrlParser: true,
-			strictQuery: false,
-			keepAlive: true,
-		},
-
-		disabledDefaultCommands: [
-			Wok.DefaultCommands.ChannelCommand,
-			Wok.DefaultCommands.CustomCommand,
-			Wok.DefaultCommands.Prefix,
-			Wok.DefaultCommands.RequiredPermissions,
-			Wok.DefaultCommands.RequiredRoles,
-			Wok.DefaultCommands.ToggleCommand
-		],
-
-		mongoUri: process.env.DB,
-	});
+client.on("clientReady", async () => {
+	Logena.info(`${client.user.tag} ONLINE`)
+	loadEvents(client);
+	loadSlashCommands(client);
 }); client.on('levelUp', async (message, data, role) => { console.log(data) }) // <= This is optional but can be used to send a message to the user when they level up.
 
 client.login(process.env.TOKEN) // you'll need to set this to your own Discord Bot Token

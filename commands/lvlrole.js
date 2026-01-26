@@ -22,45 +22,27 @@ module.exports = {
         }
     ],
 
-    callback: async ({ args, guild, interaction, user }) => {
+    callback: async ({ guild, interaction, user }) => {
         await interaction.deferReply()
 
-        if (args[1]) {
-            xp.lvlRole(interaction, args[0], guild.id).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: "simply-xp does not provide an output for this function!",
-                        color: Colors.DarkGreen
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        const targetId = interaction.options.getUser("user")?.id || user.id;
+
+        xp.lvlRole(interaction, targetId, guild.id).then((res) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: res ? JSON.stringify(res) : "simply-xp does not provide an output for this function!",
+                    color: Colors.DarkGreen
+                }]
             })
-        } else {
-            xp.lvlRole(interaction, user.id, guild.id).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "simply-xp does not provide an output for this function!",
-                        description: JSON.stringify(res),
-                        color: Colors.DarkGreen
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        }).catch((err) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: err.toString().substring(0, 1024),
+                    color: Colors.Red
+                }]
             })
-        }
+        })
     }
 }

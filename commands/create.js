@@ -22,45 +22,27 @@ module.exports = {
         }
     ],
 
-    callback: async ({ args, guild, interaction, user }) => {
+    callback: async ({ guild, interaction, user }) => {
         await interaction.deferReply()
 
-        if (args.length) {
-            xp.create(args[0], guild.id).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: JSON.stringify(res) || "Nothing Returned (Likely User Already Exists)",
-                        color: res ? Colors.DarkGreen : Colors.DarkOrange
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        const targetId = interaction.options.getUser("user")?.id || user.id;
+
+        xp.create(targetId, guild.id).then((res) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: JSON.stringify(res) || "Nothing Returned (Likely User Already Exists)",
+                    color: res ? Colors.DarkGreen : Colors.DarkOrange
+                }]
             })
-        } else {
-            xp.create(user.id, guild.id).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: JSON.stringify(res) || "Nothing Returned (Likely User Already Exists)",
-                        color: res ? Colors.DarkGreen : Colors.DarkOrange
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        }).catch((err) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: err.toString().substring(0, 1024),
+                    color: Colors.Red
+                }]
             })
-        }
+        })
     }
 }

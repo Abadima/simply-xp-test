@@ -28,45 +28,28 @@ module.exports = {
         }
     ],
 
-    callback: async ({ args, guild, interaction, user }) => {
+    callback: async ({ guild, interaction, user }) => {
         await interaction.deferReply()
 
-        if (args[1]) {
-            xp.setXP(args[1], guild.id, args[0]).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: JSON.stringify(res),
-                        color: Colors.DarkGreen
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        const targetId = interaction.options.getUser("user")?.id || user.id;
+        const expValue = interaction.options.getNumber("exp");
+
+        xp.setXP(targetId, guild.id, expValue).then((res) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: JSON.stringify(res),
+                    color: Colors.DarkGreen
+                }]
             })
-        } else {
-            xp.setXP(user.id, guild.id, args[0]).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: JSON.stringify(res),
-                        color: Colors.DarkGreen
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        }).catch((err) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: err.toString().substring(0, 1024),
+                    color: Colors.Red
+                }]
             })
-        }
+        })
     }
 }

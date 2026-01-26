@@ -34,49 +34,32 @@ module.exports = {
         }
     ],
 
-    callback: async ({ args, guild, interaction, user }) => {
-        const choices = interaction.options
+    callback: async ({ guild, interaction, user }) => {
         await interaction.deferReply()
+        const options = interaction.options;
+        const targetId = options.getUser("user")?.id || user.id;
+        const expValue = options.getNumber("exp");
+        const maxValue = options.getNumber("max");
+        const xpPayload = maxValue
+            ? { min: expValue, max: maxValue }
+            : expValue;
 
-        if (choices.getNumber('max')) {
-            xp.addXP(interaction, choices.getUser("user")?.id || user.id, guild.id, {
-                min: choices.getNumber("exp"),
-                max: choices.getNumber("max")
-            }).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: JSON.stringify(res),
-                        color: Colors.DarkGreen
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        xp.addXP(interaction, targetId, guild.id, xpPayload).then((res) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: JSON.stringify(res),
+                    color: Colors.DarkGreen
+                }]
             })
-        } else {
-            xp.addXP(interaction, args[1] || user.id, guild.id, args[0]).then((res) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: JSON.stringify(res),
-                        color: Colors.DarkGreen
-                    }]
-                })
-            }).catch((err) => {
-                interaction.editReply({
-                    embeds: [{
-                        title: "Result of Function",
-                        description: err.toString().substring(0, 1024),
-                        color: Colors.Red
-                    }]
-                })
+        }).catch((err) => {
+            interaction.editReply({
+                embeds: [{
+                    title: "Result of Function",
+                    description: err.toString().substring(0, 1024),
+                    color: Colors.Red
+                }]
             })
-        }
+        })
     }
 }

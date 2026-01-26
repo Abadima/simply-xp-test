@@ -19,13 +19,16 @@ module.exports = {
         type: 10
     }],
 
-    callback: async ({ args, interaction, client }) => {
-        await interaction.deferReply()
+    callback: async ({ interaction, client }) => {
+        const requestedLimit = interaction.options.getNumber("limit");
+        const guildSize = interaction.guild?.memberCount ?? 50;
+        const limit = requestedLimit && requestedLimit > 0 ? requestedLimit : guildSize;
+        await interaction.deferReply();
 
-        xp.leaderboard(client, interaction.guild.id, args[0] || 5).then((res) => {
-            let lead = ""; res.forEach(user => {
-                lead += `Level ${user.level} - ${user.tag} - ${user.xp} XP\n`
-            })
+        try {
+            const res = await xp.leaderboard(client, interaction.guild.id, limit);
+            const lead = res.map(user => `Level ${user.level} - ${user.tag} - ${user.xp} XP`).join("\n") || "(no data yet)";
+
             interaction.editReply({
                 embeds: [{
                     title: "Result of Function",
@@ -44,16 +47,16 @@ module.exports = {
                         }`
                     }]
                 }]
-            })
-        }).catch((err) => {
-            console.log(err)
+            });
+        } catch (err) {
+            console.log(err);
             interaction.editReply({
                 embeds: [{
                     title: "Result of Function",
                     description: `${err}`,
                     color: Colors.Red
                 }]
-            })
-        })
+            });
+        }
     }
 }
